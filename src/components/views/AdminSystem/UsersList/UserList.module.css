@@ -1,0 +1,11 @@
+.group {
+    display: flex;
+    align-items: center;
+    height: 1rem;
+    /* justify-content: center; */
+    /* gap: 2rem */
+}
+
+.group > input {
+    margin-left: 1rem !important;
+}

@@ -1,0 +1,22 @@
+@import "variables";
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.scss";
+@import "./layout/sidebar";
+@import "./layout/container";
+
+.card {
+
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.input-error {
+    border-color: red;
+}
+
+.text-error {
+    color: red
+}

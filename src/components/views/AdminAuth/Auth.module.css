@@ -1,0 +1,30 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.block {}
+
+@media (min-width: 1200px) {
+    
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+    
+}
+
+@media (max-width: 575px) and (min-width: 0px) {
+    
+}
