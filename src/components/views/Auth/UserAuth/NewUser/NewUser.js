@@ -1,9 +1,10 @@
 // import { Alert } from "bootstrap"
 import Webcam from "react-webcam"
 import { Alert, Button, ButtonGroup, CardText } from "reactstrap"
-import Class from './OldUser.module.css'
+import Class from './NewUser.module.css'
+import NewUserFormContainer from "./NewUserForm/NewUserForm.container"
 
-function OldUser(props) {
+function NewUser(props) {
 
     return (
         <>
@@ -52,15 +53,20 @@ function OldUser(props) {
             {
                 props.saved == true
                     ?
-                    <Alert color="success">Спасибо! Нажмите на уведомление, чтобы перейти в списку пользователей</Alert>
+                    <NewUserFormContainer 
+                        newReg={props.newReg}
+                        image={props.newImage}
+                        goToUserList={props.goToUserList}
+                    />
                     :
                     <>
-                        <CardText className="mt-3" >Система распознавала Вас как:</CardText>
-                        <CardText tag='h3'>{props.lastname} {props.firstname}</CardText>
+                        {/* <CardText className="mt-3" >Система распознавала Вас как:</CardText>
+                        <CardText tag='h3'>{props.lastname} {props.firstname}</CardText> */}
                     </>
             }
+            <Button color="info" className="col-6 center mt-3" onClick={props.newReg}>Перейти к началу регистрации</Button>
         </>
     )
 }
 
-export default OldUser
+export default NewUser

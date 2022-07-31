@@ -16,7 +16,6 @@ function UserListContainer(props) {
             if (users) {
                 setList([...users].filter(value => value.checked == checked))
             }
-
         }, [users]
     )
 

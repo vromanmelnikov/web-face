@@ -10,14 +10,18 @@ function AdminAuthContainer(props) {
 
     useEffect(
         () => {
-            let id = parseInt(window.localStorage.getItem('id'))
-            axios.get(`${url}/admins/${id}`).then(
-                (res) => {
-                    if (res.data) {
-                        navigate('/admin/user-list')
+            let auth = window.localStorage.getItem('auth')
+            if (auth == 'true') {
+                let id = parseInt(window.localStorage.getItem('id'))
+                axios.get(`${url}/admins/${id}`).then(
+                    (res) => {
+                        if (res.data) {
+                            navigate('/admin/user-list')
+                        }
                     }
-                }
-            )
+                )
+            }
+
         }
     )
 

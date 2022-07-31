@@ -1,5 +1,6 @@
 import Webcam from "react-webcam";
 import { Button, ButtonGroup, Card, CardBody, CardImg, CardTitle, Col, Container, Row } from "reactstrap";
+import NewUserContainer from "./NewUser/NewUser.container";
 import OldUserContainer from "./OldUser/OldUser.container";
 
 import Class from './UserAuth.module.css'
@@ -48,7 +49,7 @@ function UserAuth(props) {
                                                         className="btn mt-3"
                                                         onClick={props.savePhoto}
                                                     >
-                                                        Сохранить фото
+                                                        Использовать фото
                                                     </Button>
                                                     <Button
                                                         className="btn mt-3"
@@ -67,13 +68,22 @@ function UserAuth(props) {
                         {
                             props.oldUser != null &&
                             <CardBody>
-                                <OldUserContainer user={props.oldUser} image={props.image} newReg={props.newReg} goToUserList={props.goToUserList} />
+                                <OldUserContainer
+                                    user={props.oldUser}
+                                    image={props.image}
+                                    newReg={props.newReg}
+                                    goToUserList={props.goToUserList}
+                                />
                             </CardBody>
                         }
                         {
                             props.newUser != false &&
                             <CardBody>
-                                <h1>Новый пользователь!!</h1>
+                                <NewUserContainer 
+                                    image={props.image}
+                                    newReg={props.newReg}
+                                    goToUserList={props.goToUserList}
+                                />
                             </CardBody>
                         }
                     </Card>

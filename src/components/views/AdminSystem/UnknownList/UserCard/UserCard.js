@@ -8,13 +8,14 @@ function UserCard(props) {
         <Card>
             <CardImg src={props.photo}></CardImg>
             <CardBody className="p-4">
-                <CardTitle tag="h5">{props.lastname} {props.firstname}</CardTitle>
-                <CardText>{props.info}</CardText>
+                {/* <CardTitle tag="h5">{props.lastname} {props.firstname}</CardTitle> */}
+                {/* <CardText>{props.info}</CardText> */}
                 <Button
                     color='primary'
+                    className="col-12" 
                     onClick={props.goToUserInfo}
                 >
-                    Подробнее
+                    Подтвердить
                 </Button>
             </CardBody>
         </Card>

@@ -13,10 +13,8 @@ import {
   Dropdown,
   Button,
 } from "reactstrap";
-// import { ReactComponent as LogoWhite } from "../assets/images/logos/xtremelogowhite.svg";
-// import user1 from "../assets/images/users/user1.jpg";
 
-const Header = () => {
+const Header = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -70,15 +68,64 @@ const Header = () => {
           </NavItem>
           <UncontrolledDropdown inNavbar nav>
             <DropdownToggle caret nav>
+              Администратор
+            </DropdownToggle>
+            <DropdownMenu end>
+              <DropdownItem
+                onClick={
+                  (e) => {
+                    window.localStorage.setItem('auth', 'false')
+                    props.goByLink('/')
+                  }
+                }
+              >
+                Регистрация пользователя
+              </DropdownItem>
+              <DropdownItem
+                onClick={
+                  (e) => {
+                    props.goByLink('/admin/stream')
+                  }
+                }
+              >
+                Потоковое распознавание
+              </DropdownItem>
+              <DropdownItem
+                onClick={
+                  (e) => {
+                    props.goByLink('/admin/user-list')
+                  }
+                }
+              >
+                Список пользователей
+              </DropdownItem>
+              <DropdownItem
+                onClick={
+                  (e) => {
+                    props.goByLink('/admin/unknown-list')
+                  }
+                }
+              >
+                Список неизвестных
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Reset</DropdownItem>
+            </DropdownMenu>
+          </UncontrolledDropdown>
+          <UncontrolledDropdown inNavbar nav>
+            <DropdownToggle caret nav>
               Пользователь
             </DropdownToggle>
             <DropdownMenu end>
-              <DropdownItem>
-                <Link to="/about" className="nav-link">
-                  About
-                </Link>
+              <DropdownItem
+                onClick={
+                  (e) => {
+                    props.goByLink('/user-auth')
+                  }
+                }
+              >
+                Регистрация пользователя
               </DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
               <DropdownItem divider />
               <DropdownItem>Reset</DropdownItem>
             </DropdownMenu>

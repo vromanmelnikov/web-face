@@ -1,8 +1,8 @@
 import axios from "axios"
 import { useCallback, useEffect, useRef, useState } from "react"
-import OldUser from "./NewUser"
+import NewUser from "./NewUser"
 
-function OldUserContainer (props) {
+function NewUserContainer (props) {
 
     let url = 'http://localhost:3000'
 
@@ -14,25 +14,14 @@ function OldUserContainer (props) {
 
     let savePhoto = () => {
         setSaved(true)
-        let user = {
-            ...props.user,
-            photo: newImage
-        }
-        axios.put(`${url}/users/${user.id}`, user).then(
-            (res) => {
-                console.log(res)
-            }
-        )
     }
 
     let retakePhoto = () => {
-        // setRetaked(true)
         setNewImage('')
     }
 
     const takePhoto = useCallback(
         () => {
-            //@ts-ignore
             let photo = webcamRef.current.getScreenshot()
             setNewImage(photo)
         }, [webcamRef]
@@ -45,7 +34,7 @@ function OldUserContainer (props) {
     )
 
     let data = {
-        ...props.user,
+        // ...props.user,
         image: props.image,
         saved,
         savePhoto,
@@ -53,12 +42,14 @@ function OldUserContainer (props) {
         retaked,
         newImage,
         retakePhoto,
-        takePhoto
+        takePhoto,
+        newReg: props.newReg,
+        goToUserList: props.goToUserList
     }
 
     return(
-        <OldUser {...data}/>
+        <NewUser {...data}/>
     )
 }
 
-export default OldUserContainer
+export default NewUserContainer

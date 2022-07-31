@@ -129,11 +129,14 @@ function UserAuthContainer(props) {
                                     else {
                                         let id = result[0]._label
                                         let user = users.filter(user => user.id == parseInt(id))[0]
-                                        setOldUser({...user})
+                                        setOldUser({ ...user })
                                     }
                                 }
                             }
                         )
+                }
+                else {
+                    setNewUser(true)
                 }
             }
         )
@@ -155,7 +158,7 @@ function UserAuthContainer(props) {
         takePhoto,
         retakePhoto,
         savePhoto,
-        oldUser, 
+        oldUser,
         newUser,
         newReg,
         goToUserList

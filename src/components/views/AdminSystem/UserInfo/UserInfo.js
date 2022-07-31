@@ -14,12 +14,22 @@ function UserInfo(props) {
                 </BreadcrumbItem>
                 <BreadcrumbItem active>{props.lastname} {props.firstname}</BreadcrumbItem>
             </Breadcrumb>
-            <CardImg src={draft} className={`center ${Class.image}`}></CardImg>
-            <CardBody className="p-4">
-                <CardText tag="h2">{props.lastname} {props.firstname}</CardText>
+            <CardImg src={props.photo} className={`center ${Class.image}`}></CardImg>
+            <CardText tag="h2" className="center mb-3 mt-3">{props.lastname} {props.firstname}</CardText>
+            {
+                props.info == ''
+                    ?
+                    <Button color='primary' className="col-6 center mb-3" onClick={props.showInfo}>Показать информацию</Button>
+                    :
+                    <CardText tag="h4" className="center mb-3">{props.info}</CardText>
+            }
+            {/* <CardText tag="h4" className="center mb-2">Функции:</CardText> */}
+            {
+                props.checked == false &&
+                <Button color='success' className="col-4 center mb-3" onClick={props.checkUser}>Подтвердить пользователя</Button>
+            }
+            <Button color='danger' className="col-4 center mb-4" onClick={props.deleteUser}>Удалить пользователя</Button>
 
-                <CardText tag="h4">{props.info}</CardText>
-            </CardBody>
         </Card>
     )
 }

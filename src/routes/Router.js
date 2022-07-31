@@ -25,6 +25,8 @@ let LoginContainer = lazy(() => import('../components/views/AdminAuth/Login/Logi
 let RegistrationContainer = lazy(() => import('../components/views/AdminAuth/Registration/Registration.container'))
 
 let AdminSystemContainer = lazy(() => import('../components/views/AdminSystem/AdminSystem.container'))
+let StreamDetectionContainer = lazy(()=>import('../components/views/AdminSystem/StreamDetection/StreamDetection.container'))
+let UnknownListContainer = lazy(() => import('../components/views/AdminSystem/UnknownList/UnknownList.container'))
 let UserListContainer = lazy(()=>import('../components/views/AdminSystem/UsersList/UserList.container'))
 let UserInfoContainer = lazy(()=>import("../components/views/AdminSystem/UserInfo/UserInfo.container"))
 
@@ -33,6 +35,10 @@ let AuthContainer = lazy(() => import('../components/views/Auth/Auth.container')
 let UserAuthContainer = lazy(()=>import('../components/views/Auth/UserAuth/UserAuth.container'))
 
 const ThemeRoutes = [
+  {
+    path: "/",
+    element: <Navigate to='/admin-auth/login'/>
+  },
   {
     path: "/auth",
     element: <AuthContainer />
@@ -60,8 +66,16 @@ const ThemeRoutes = [
     element: <AdminSystemContainer />,
     children: [
       {
+        path: '/admin/stream',
+        element: <StreamDetectionContainer />
+      },
+      {
         path: "/admin/user-list",
         element: <UserListContainer />
+      },
+      {
+        path: "/admin/unknown-list",
+        element: <UnknownListContainer />
       },
       {
         path: "/admin/user-info/:index",
@@ -70,21 +84,21 @@ const ThemeRoutes = [
     ]
   },
   {
-    path: "/",
+    path: "/f",
     element: <FullLayout />,
     children: [
 
-      { path: "/", element: <Navigate to="/starter" /> },
-      { path: "/starter", exact: true, element: <Starter /> },
-      { path: "/about", exact: true, element: <About /> },
-      { path: "/alerts", exact: true, element: <Alerts /> },
-      { path: "/badges", exact: true, element: <Badges /> },
-      { path: "/buttons", exact: true, element: <Buttons /> },
-      { path: "/cards", exact: true, element: <Cards /> },
-      { path: "/grid", exact: true, element: <Grid /> },
-      { path: "/table", exact: true, element: <Tables /> },
-      { path: "/forms", exact: true, element: <Forms /> },
-      { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
+      { path: "/f/", element: <Navigate to="/starter" /> },
+      { path: "/f/starter", exact: true, element: <Starter /> },
+      { path: "/f/about", exact: true, element: <About /> },
+      { path: "/f/alerts", exact: true, element: <Alerts /> },
+      { path: "/f/badges", exact: true, element: <Badges /> },
+      { path: "/f/buttons", exact: true, element: <Buttons /> },
+      { path: "/f/cards", exact: true, element: <Cards /> },
+      { path: "/f/grid", exact: true, element: <Grid /> },
+      { path: "/f/table", exact: true, element: <Tables /> },
+      { path: "/f/forms", exact: true, element: <Forms /> },
+      { path: "/f/breadcrumbs", exact: true, element: <Breadcrumbs /> },
     ],
   },
 ];

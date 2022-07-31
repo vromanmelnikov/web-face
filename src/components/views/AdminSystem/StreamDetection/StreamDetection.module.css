@@ -1,0 +1,9 @@
+.webcam_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.webcam_container > video {
+    width: 40%;
+}
