@@ -11,6 +11,11 @@ function NewUser(props) {
             {
                 props.saved == false && props.newImage != '' &&
                 <div className={`${Class.image_container} center`}>
+                    {
+                        props.unknown != null &&
+                        <CardText>Система определила, что ранее вы заходили в помещение</CardText>
+                    }
+
                     <img src={props.newImage} id='img' />
                     <ButtonGroup>
                         <Button
@@ -53,10 +58,11 @@ function NewUser(props) {
             {
                 props.saved == true
                     ?
-                    <NewUserFormContainer 
+                    <NewUserFormContainer
                         newReg={props.newReg}
                         image={props.newImage}
                         goToUserList={props.goToUserList}
+                        unknown={props.unknown}
                     />
                     :
                     <>

@@ -1,10 +1,23 @@
 import axios from "axios"
 import { useCallback, useEffect, useRef, useState } from "react"
 import OldUser from "./OldUser"
+import { URL } from '../../../../../confige'
 
-function OldUserContainer (props) {
+function OldUserContainer(props) {
 
-    let url = 'http://localhost:3000'
+    useEffect(
+        () => {
+            console.log(props)
+            let type = props.user.type
+            if (type == 'unknown') {
+                props.setNew(true)
+                props.setOld(null)
+                props.setUnknown(props.user)
+            }
+        }, []
+    )
+
+    let url = URL
 
     const webcamRef = useRef()
 
@@ -64,8 +77,8 @@ function OldUserContainer (props) {
         saveOld
     }
 
-    return(
-        <OldUser {...data}/>
+    return (
+        <OldUser {...data} />
     )
 }
 

@@ -8,7 +8,7 @@ function UserList(props) {
     return (
         <div>
             <Row>
-                <ButtonGroup className="mb-3 col-6 center">
+                <ButtonGroup className="mb-3 col-6 ">
                     <Button
                         color="primary"
                         onClick={() => props.changeCheck(true)}

@@ -3,7 +3,11 @@ import { useNavigate } from "react-router"
 import axios from 'axios'
 import Registration from "./Registration"
 
+import { URL } from '../../../../confige'
+
 function RegistrationContainer(props) {
+
+    let url = URL
 
     let navigate = useNavigate()
     // const [error, setError] = useState(false)
@@ -28,8 +32,6 @@ function RegistrationContainer(props) {
             setPassError(false)
         }
     }
-
-    let url = 'http://localhost:3000'
 
     let onSubmit = (event) => {
         event.preventDefault()

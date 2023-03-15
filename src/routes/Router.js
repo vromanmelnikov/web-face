@@ -1,22 +1,5 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-// import UserInfoContainer from "../components/views/AdminSystem/UserInfo/UserInfo.container.js";
-
-/****Layouts*****/
-const FullLayout = lazy(() => import("../layouts/FullLayout.js"));
-
-/***** Pages ****/
-
-const Starter = lazy(() => import("../views/Starter.js"));
-const About = lazy(() => import("../views/About.js"));
-const Alerts = lazy(() => import("../views/ui/Alerts"));
-const Badges = lazy(() => import("../views/ui/Badges"));
-const Buttons = lazy(() => import("../views/ui/Buttons"));
-const Cards = lazy(() => import("../views/ui/Cards"));
-const Grid = lazy(() => import("../views/ui/Grid"));
-const Tables = lazy(() => import("../views/ui/Tables"));
-const Forms = lazy(() => import("../views/ui/Forms"));
-const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
 
 /*****Routes******/
 
@@ -25,7 +8,9 @@ let LoginContainer = lazy(() => import('../components/views/AdminAuth/Login/Logi
 let RegistrationContainer = lazy(() => import('../components/views/AdminAuth/Registration/Registration.container'))
 
 let AdminSystemContainer = lazy(() => import('../components/views/AdminSystem/AdminSystem.container'))
+let InfoContainer = lazy(() => import('../components/views/AdminSystem/Info/Info.container'))
 let StreamDetectionContainer = lazy(()=>import('../components/views/AdminSystem/StreamDetection/StreamDetection.container'))
+let UnknownInfoContainer = lazy(() => import('../components/views/AdminSystem/UnknownInfo/UnknownInfo.container'))
 let UnknownListContainer = lazy(() => import('../components/views/AdminSystem/UnknownList/UnknownList.container'))
 let UserListContainer = lazy(()=>import('../components/views/AdminSystem/UsersList/UserList.container'))
 let UserInfoContainer = lazy(()=>import("../components/views/AdminSystem/UserInfo/UserInfo.container"))
@@ -66,6 +51,10 @@ const ThemeRoutes = [
     element: <AdminSystemContainer />,
     children: [
       {
+        path: "/admin/info",
+        element: <InfoContainer />
+      },
+      {
         path: '/admin/stream',
         element: <StreamDetectionContainer />
       },
@@ -80,27 +69,13 @@ const ThemeRoutes = [
       {
         path: "/admin/user-info/:index",
         element: <UserInfoContainer />
+      },
+      {
+        path: '/admin/unknown-info/:index',
+        element: <UnknownInfoContainer />
       }
     ]
-  },
-  {
-    path: "/f",
-    element: <FullLayout />,
-    children: [
-
-      { path: "/f/", element: <Navigate to="/starter" /> },
-      { path: "/f/starter", exact: true, element: <Starter /> },
-      { path: "/f/about", exact: true, element: <About /> },
-      { path: "/f/alerts", exact: true, element: <Alerts /> },
-      { path: "/f/badges", exact: true, element: <Badges /> },
-      { path: "/f/buttons", exact: true, element: <Buttons /> },
-      { path: "/f/cards", exact: true, element: <Cards /> },
-      { path: "/f/grid", exact: true, element: <Grid /> },
-      { path: "/f/table", exact: true, element: <Tables /> },
-      { path: "/f/forms", exact: true, element: <Forms /> },
-      { path: "/f/breadcrumbs", exact: true, element: <Breadcrumbs /> },
-    ],
-  },
+  }
 ];
 
 export default ThemeRoutes;

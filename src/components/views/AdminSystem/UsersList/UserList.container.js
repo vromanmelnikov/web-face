@@ -13,7 +13,7 @@ function UserListContainer(props) {
 
     useEffect(
         () => {
-            if (users) {
+            if (users.length != 0) {
                 setList([...users].filter(value => value.checked == checked))
             }
         }, [users]

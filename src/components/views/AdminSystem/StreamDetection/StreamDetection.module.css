@@ -1,9 +1,38 @@
-.webcam_container{
+.webcam_container {
     width: 100%;
     display: flex;
     flex-direction: row;
+    gap: 1rem;
+    /* align-items: center; */
+    justify-content: center;
 }
 
-.webcam_container > video {
+.webcam_container>video {
     width: 40%;
+}
+
+.info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info>table {
+    width: 90%;
+}
+
+@media (max-width: 990px) {
+    .webcam_container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .webcam_container>video {
+        width: 60%;
+    }
+
+    .info {
+        width: 90%;
+    }
 }

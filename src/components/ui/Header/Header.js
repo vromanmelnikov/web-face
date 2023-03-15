@@ -56,16 +56,7 @@ const Header = (props) => {
 
       <Collapse navbar isOpen={isOpen}>
         <Nav className="me-auto" navbar>
-          <NavItem>
-            <Link to="/starter" className="nav-link">
-              Starter
-            </Link>
-          </NavItem>
-          <NavItem>
-            <Link to="/about" className="nav-link">
-              About
-            </Link>
-          </NavItem>
+          
           <UncontrolledDropdown inNavbar nav>
             <DropdownToggle caret nav>
               Администратор
@@ -79,7 +70,16 @@ const Header = (props) => {
                   }
                 }
               >
-                Регистрация пользователя
+                Регистрация администратора
+              </DropdownItem>
+              <DropdownItem
+                onClick={
+                  (e) => {
+                    props.goByLink('/admin/info')
+                  }
+                }
+              >
+                Информация о посещениях
               </DropdownItem>
               <DropdownItem
                 onClick={
@@ -108,8 +108,6 @@ const Header = (props) => {
               >
                 Список неизвестных
               </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
           <UncontrolledDropdown inNavbar nav>
@@ -126,8 +124,6 @@ const Header = (props) => {
               >
                 Регистрация пользователя
               </DropdownItem>
-              <DropdownItem divider />
-              <DropdownItem>Reset</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

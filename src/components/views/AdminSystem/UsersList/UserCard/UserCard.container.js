@@ -17,7 +17,7 @@ function UserCardContainer(props) {
             else if (user.type == 'teacher'){
                 setInfo(`Предмет: ${user.subject}`)
             }
-        }, []
+        }, [user]
     )
 
     let goToUserInfo = () => {

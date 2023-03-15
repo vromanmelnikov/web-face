@@ -87,7 +87,6 @@ function NewUserForm(props) {
                     :
                     <>
                         <Alert color="success">Успешная регистрация!</Alert>
-                        <Button color="primary" className="col-6 center " onClick={props.goToUserList}>Перейти в списку пользователей</Button><br />
                     </>
             }
         </>

@@ -15,7 +15,7 @@ function UserCard(props) {
                     className="col-12" 
                     onClick={props.goToUserInfo}
                 >
-                    Подтвердить
+                    Подробнее
                 </Button>
             </CardBody>
         </Card>

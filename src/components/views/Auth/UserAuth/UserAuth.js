@@ -73,6 +73,9 @@ function UserAuth(props) {
                                     image={props.image}
                                     newReg={props.newReg}
                                     goToUserList={props.goToUserList}
+                                    setUnknown={props.setUnknown}
+                                    setNew={props.setNewUser}
+                                    setOld={props.setOldUser}
                                 />
                             </CardBody>
                         }
@@ -80,12 +83,16 @@ function UserAuth(props) {
                             props.newUser != false &&
                             <CardBody>
                                 <NewUserContainer 
+                                    user={props.oldUser}
                                     image={props.image}
                                     newReg={props.newReg}
                                     goToUserList={props.goToUserList}
+                                    unknown={props.unknown}
+
                                 />
                             </CardBody>
                         }
+                        <Button color="primary" className="col-6 center mb-3" onClick={props.goToUserList}>Перейти в списку пользователей</Button><br />
                     </Card>
                 </Col>
             </Row>

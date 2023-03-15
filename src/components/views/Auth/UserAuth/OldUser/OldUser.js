@@ -55,7 +55,6 @@ function OldUser(props) {
                     ?
                     <>
                         <Alert color="success">Фото успешно сохранено!</Alert>
-                        <Button color="primary" className="col-6 center mb-3" onClick={props.goToUserList}>Перейти в списку пользователей</Button><br />
                     </>
                     :
                     <>

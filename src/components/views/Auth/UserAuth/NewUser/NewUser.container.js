@@ -1,10 +1,13 @@
 import axios from "axios"
 import { useCallback, useEffect, useRef, useState } from "react"
 import NewUser from "./NewUser"
+import {URL} from '../../../../../confige'
 
 function NewUserContainer (props) {
 
-    let url = 'http://localhost:3000'
+    console.log(props)
+
+    let url = URL
 
     const webcamRef = useRef()
 
@@ -44,7 +47,8 @@ function NewUserContainer (props) {
         retakePhoto,
         takePhoto,
         newReg: props.newReg,
-        goToUserList: props.goToUserList
+        goToUserList: props.goToUserList,
+        unknown: props.unknown
     }
 
     return(

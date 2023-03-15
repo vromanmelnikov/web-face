@@ -1,10 +1,11 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { URL } from "../../../../../../confige"
 import NewUserForm from "./NewUserForm"
 
-function NewUserFormContainer (props) {
+function NewUserFormContainer(props) {
 
-    let url = 'http://localhost:3000'
+    let url = URL
 
     const [type, setType] = useState(1)
     const [infoValue, setInfoValue] = useState('')
@@ -21,8 +22,7 @@ function NewUserFormContainer (props) {
         let firstname = target[1].value
         let type = parseInt(target[2].value)
         let info = target[3].value
-        console.log({lastname, firstname, type, info})
-        if (lastname == '' || firstname == '' || info == ''){
+        if (lastname == '' || firstname == '' || info == '') {
             setError(true)
         }
         else {
@@ -39,15 +39,32 @@ function NewUserFormContainer (props) {
                 checked: false
             }
 
-            axios.post(`${url}/users`, user).then(
-                (res) => {
-                    console.log(res)
-                    setSaved(true)
-                }
-            )
+            let un = props.unknown
+            // console.log(un)
+
+            if (un != null) {
+                axios.put(`${url}/users/${un.id}`, user).then(
+                    (res) => {
+                        // console.log(res)
+                        setSaved(true)
+                    }
+                )
+            }
+            else {
+                axios.post(`${url}/users`, user).then(
+                    (res) => {
+                        // console.log(res)
+                        axios.post(`${url}/visits`, {list:[]}).then(
+                            res => {
+                                setSaved(true)
+                            }
+                        )
+                    }
+                )
+            }
         }
     }
-    
+
     let onTypeChange = (event) => {
         let value = event.target.value
         setType(value)
@@ -66,12 +83,12 @@ function NewUserFormContainer (props) {
                 id: -1,
                 name: 'Не выбрано'
             }
-            axios.get(`${url}/${req}`).then(
-                res => {
-                    let data = res.data
-                    setInfo([zero, ...data])
-                }
-            )
+            // axios.get(`${url}/${req}`).then(
+            //     res => {
+            //         let data = res.data
+            //         setInfo([zero, ...data])
+            //     }
+            // )
         }, [type]
     )
 
@@ -88,8 +105,8 @@ function NewUserFormContainer (props) {
         goToUserList: props.goToUserList
     }
 
-    return(
-        <NewUserForm {...data}/>
+    return (
+        <NewUserForm {...data} />
     )
 }
 

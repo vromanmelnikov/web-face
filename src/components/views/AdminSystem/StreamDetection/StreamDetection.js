@@ -1,5 +1,5 @@
 import Webcam from "react-webcam"
-import { Card, CardHeader, CardText } from "reactstrap"
+import { Card, CardHeader, CardText, Table } from "reactstrap"
 
 import Class from './StreamDetection.module.css'
 
@@ -18,7 +18,7 @@ function StreamDetection(props) {
                         facingMode: "user"
                     }}
                 />
-                <div>
+                <div className={`${Class.info}`}>
                     {
                         props.human == -2 &&
                         <CardText tag='h3'>В камере нет людей</CardText>
@@ -29,15 +29,51 @@ function StreamDetection(props) {
                     }
                     {
                         props.human != -2 && props.human != -1 &&
-                        <CardText tag='h3'>В камере {props.human}</CardText>
+                        <CardText tag='h3'>В камере есть человек</CardText>
                     }
+                    <Table bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Кто находится в здании:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                props.humans.map(
+                                    (value, index) => {
+
+                                        let user = props.users.filter(
+                                            elem => elem.id == value
+                                        )[0]
+
+                                        if (user != undefined) {
+                                            return (
+                                                <tr 
+                                                    key={index}
+                                                    onClick={
+                                                        () => {
+                                                            props.goToUserInfo(user)
+                                                        }
+                                                    }
+                                                >
+                                                    <td>
+                                                        {
+                                                            user.type == 'unknown'
+                                                                ?
+                                                                `Неопознанный пользователь ${user.id}`
+                                                                :
+                                                                `${user.lastname} ${user.firstname}`
+                                                        }
+                                                    </td>
+                                                </tr>
+                                            )
+                                        }
+                                    }
+                                )
+                            }
+                        </tbody>
+                    </Table>
                 </div>
-            </div>
-            <div>
-                {
-                    props.image != '' && 
-                    <img src={props.image} />
-                }
             </div>
         </Card>
     )

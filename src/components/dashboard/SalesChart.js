@@ -50,7 +50,7 @@ const SalesChart = () => {
           Yearly Sales Report
         </CardSubtitle>
         <Chart
-          type="area"
+          type="rangeBar"
           width="100%"
           height="390"
           options={chartoptions.options}

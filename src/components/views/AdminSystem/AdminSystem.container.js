@@ -4,10 +4,11 @@ import AdminSystem from "./AdminSystem"
 import axios from 'axios'
 import { setUsers } from "../../../store/usersReducer"
 import { useNavigate } from "react-router"
+import {URL} from '../../../confige'
 
 function AdminSystemContainer (props) {
 
-    const url = 'http://localhost:3000'
+    const url = URL
     const dispatch = useDispatch()
 
     let navigate = useNavigate()

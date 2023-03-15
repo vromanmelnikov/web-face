@@ -1,11 +1,12 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { URL} from "../../../confige";
 import AdminAuth from "./AdminAuth";
 
 function AdminAuthContainer(props) {
 
-    let url = 'http://localhost:3000'
+    let url = URL
     let navigate = useNavigate()
 
     useEffect(

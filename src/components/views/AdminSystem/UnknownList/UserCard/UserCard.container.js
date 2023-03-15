@@ -8,8 +8,13 @@ function UserCardContainer(props) {
 
     let user = {...props.user}
 
+    let goToUserInfo = () => {
+        navigate(`/admin/unknown-info/${user.id}`)
+    }
+
     let data = {
-        ...user
+        ...user,
+        goToUserInfo
     }
 
     return(

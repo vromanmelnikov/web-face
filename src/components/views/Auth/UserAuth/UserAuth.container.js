@@ -9,26 +9,17 @@ import { useDispatch } from "react-redux"
 import { setUsers } from "../../../../store/usersReducer"
 import React from "react";
 import { useNavigate } from "react-router";
+import { URL } from '../../../../confige'
 
 function UserAuthContainer(props) {
 
     let navigate = useNavigate()
 
-    const url = 'http://localhost:3000'
+    const url = URL
     const dispatch = useDispatch()
 
     let users = useSelector(
         (state) => state.usersData.users
-    )
-
-    useEffect(
-        () => {
-            axios.get(`${url}/users`).then(
-                (res) => {
-                    dispatch(setUsers([...res.data]))
-                }
-            )
-        }, []
     )
 
     const webcamRef = useRef()
@@ -36,6 +27,7 @@ function UserAuthContainer(props) {
     const [image, setImage] = useState('')
     const [newUser, setNewUser] = useState(false)
     const [oldUser, setOldUser] = useState(null)
+    const [unknown, setUnknown] = useState(null)
 
     const takePhoto = useCallback(
         () => {
@@ -63,23 +55,23 @@ function UserAuthContainer(props) {
 
     useEffect(
         () => {
-            if (users.length != 0) {
-                Promise.all([
-                    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
-                    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
-                    faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
-                ]).then(
-                    async (data) => {
-                        loadInfo().then(
-                            (data) => {
-                                console.log(data)
-                                startVideo()
-                            }
-                        )
-                    }
-                )
-            }
-        }, [null, users]
+            axios.get(`${url}/users`).then(
+                (res) => {
+                    // console.log()
+                    dispatch(setUsers([...res.data]))
+                    Promise.all([,
+                        faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
+                        faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+                        faceapi.nets.faceLandmark68Net.loadFromUri('/models')
+                    ]).then(
+                        (data) => {
+                            startVideo()
+                        }
+                    )
+                }
+            )
+
+        }, []
     )
 
     const loadInfo = () => {
@@ -95,7 +87,8 @@ function UserAuthContainer(props) {
                         .detectSingleFace(img)
                         .withFaceLandmarks()
                         .withFaceDescriptor()
-                    descriptions.push(detections?.descriptor)
+                    // descriptions.push()
+                    descriptions.push(new Float32Array(detections?.descriptor))
 
                     let info = `${user.id}`
                     return new faceapi.LabeledFaceDescriptors(info, descriptions)
@@ -107,15 +100,15 @@ function UserAuthContainer(props) {
     let findFace = async () => {
         let img = document.createElement('img')
         img.src = image
-        const load = await loadInfo().then(
+        loadInfo().then(
             async (data) => {
                 if (data.length != 0) {
                     console.log(data)
                     const faceMatcher = new faceapi.FaceMatcher(data, 0.6)
-                    const det = await faceapi.detectAllFaces(img).withFaceLandmarks().withFaceDescriptors()
+                    faceapi.detectAllFaces(img).withFaceLandmarks().withFaceDescriptors()
                         .then(
                             (det) => {
-                                console.log(det)
+                                // console.log(det)
                                 const result = det.map(
                                     (d) => faceMatcher.findBestMatch(d.descriptor)
                                 )
@@ -161,7 +154,11 @@ function UserAuthContainer(props) {
         oldUser,
         newUser,
         newReg,
-        goToUserList
+        goToUserList,
+        unknown,
+        setUnknown,
+        setNewUser,
+        setOldUser
     }
 
     return (
